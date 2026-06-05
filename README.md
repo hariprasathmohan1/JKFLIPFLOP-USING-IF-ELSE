@@ -32,24 +32,57 @@ By using three variable K-Map, we can get the simplified expression for next sta
 
 The maximum possible groupings of adjacent ones are already shown in the figure. Therefore, the simplified expression for next state Qt+1t+1 is Q(t+1)=JQ(t)′+K′Q(t)Q(t+1)=JQ(t)′+K′Q(t)
 
-**Procedure**
 
-/* write all the steps invloved */
 
 **PROGRAM**
-<img width="563" height="137" alt="Screenshot 2025-10-16 204529" src="https://github.com/user-attachments/assets/747e3dc1-0a70-4a19-97bf-550aee621e6e" />
-
-
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by:M HARI PRASATH  RegisterNumber:212225040108
+```
+/* Program for flipflops and verify its truth table in quartus using Verilog programming.
+ Developed by:M.HARI PRASATH
+ RegisterNumber:212225040108
 */
+module de3(q, qb,j,k,clock,reset);
+    input j,k,clock,reset;
+    output reg q, qb;
+	 
+always @ (posedge (clock))
 
+    begin 
+        if (!reset)
+            begin
+               q <= q;
+               qb <=qb;
+            end   
+        
+else
+ //Write logic for JK flipflop using if else statement for four conditions
+
+begin
+               if (j == 0 && k == 0)
+                    begin
+                    q <= q;
+                    qb <= qb;
+                    end 
+		else if (j != k)
+                    begin
+                    q <= j;
+                    qb <= k;
+                    end
+               else if (j == 1 && k == 1) 
+                    begin 
+                    q <= ~q; 
+                    qb <= ~qb; 
+                    end 
+            end
+end  
+endmodule
+```
 **RTL LOGIC FOR FLIPFLOPS**
-<img width="1167" height="563" alt="Screenshot 2025-10-16 204549" src="https://github.com/user-attachments/assets/74731697-36e8-42fa-bffb-c94a56a85587" />
+<img width="1523" height="800" alt="image" src="https://github.com/user-attachments/assets/83b5f833-79e6-4f31-8e2b-7107e0e52ba9" />
 
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
-<img width="1176" height="599" alt="Screenshot 2025-10-16 204615" src="https://github.com/user-attachments/assets/fe25e9e7-6536-469d-b9a3-6783bd851cd2" />
+<img width="1657" height="802" alt="image" src="https://github.com/user-attachments/assets/ca01028d-ed41-410e-8b3c-5bda4e1156d9" />
 
 
 **RESULTS**
-Thus the basic logic gates are studied and the truth table are verified
+Thus,The JK FlipFlop is implemented and verified sucessfully.
